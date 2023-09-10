@@ -16,7 +16,7 @@
     "prepublishOnly": "npm test && npm run prettier && npm run lint"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.3"
   },
   "files": [
     "dist",
