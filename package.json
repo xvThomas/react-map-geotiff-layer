@@ -1,6 +1,6 @@
 {
   "name": "react-map-geotiff-layer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react map gl layer for geotiff rendering in WebGL",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
