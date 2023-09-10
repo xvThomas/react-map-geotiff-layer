@@ -15,6 +15,10 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run prettier && npm run lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xvThomas/react-map-geotiff-layer.git"
+  },
   "peerDependencies": {
     "react": ">=16.3"
   },
