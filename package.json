@@ -1,6 +1,6 @@
 {
   "name": "react-map-geotiff-layer",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A react map gl layer for geotiff rendering in WebGL",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -23,7 +23,9 @@
     "LICENSE",
     "README.md"
   ],
-  "keywords": ["react, react-map-gl, geotiff, WebGL"],
+  "keywords": [
+    "react, react-map-gl, geotiff, WebGL"
+  ],
   "author": "Xavier Thomas (xvthomas)",
   "license": "MIT",
   "devDependencies": {
