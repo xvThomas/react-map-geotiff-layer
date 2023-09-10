@@ -1,33 +1,33 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Node.js Package
-
+name: npm package
 on:
+  # Triggers the workflow on published releases
   release:
-    types: [created]
-
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+      - name: Checkout
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v3
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup Node
+        # Setup node environment
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          # Node version. Run "node -v" to check the latest version
+          node-version: 16.3
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+
+      - name: Install dependencies
+        run: yarn && yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Publish
+        run: yarn publish
+
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_BY_REACT_MAP_GEOTIFF_LAYER}}
+          # We need this to our NPM account
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_BY_REACT_MAP_GEOTIFF_LAYER }}
