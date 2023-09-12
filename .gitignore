@@ -1,4 +1,6 @@
 node_modules
 .idea
+.cache
 dist
 yarn-error.log
+playground-build

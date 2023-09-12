@@ -1,5 +1,6 @@
 {
   "root": true,
+  "ignorePatterns": ["**/playground-build/*.js"],
   "extends": [
     "prettier",
     "plugin:prettier/recommended",

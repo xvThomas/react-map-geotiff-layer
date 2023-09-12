@@ -1,8 +1,6 @@
-name: npm package
-on:
-  # Triggers the workflow on published releases
-  release:
-    types: [published]
+name: push
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,12 +20,5 @@ jobs:
       - name: Install dependencies
         run: yarn && yarn install
 
-      - name: Build
-        run: yarn build
-
-      - name: Publish
-        run: yarn publish
-
-        env:
-          # We need this to our NPM account
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_BY_REACT_MAP_GEOTIFF_LAYER }}
+      - name: test & prettier & lint
+        run: yarn prepublishOnly
