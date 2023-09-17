@@ -1,6 +1,9 @@
 node_modules
-.idea
-.cache
+yarn.lock
+.parcel-cache
+yarn.lock
+.parcel-cache
 dist
 yarn-error.log
-playground-build
+.DS_Store
+/.env
