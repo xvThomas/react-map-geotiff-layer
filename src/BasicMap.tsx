@@ -6,7 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 // TODO -> .env
 const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN
 
-export default function PlaygroundMap() {
+export default function BasicMap() {
   return (
     <div>
       <Map
