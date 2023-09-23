@@ -6,11 +6,9 @@ https://xvthomas.github.io/react-map-geotiff-layer/
 
     yarn start
 
-## Build page files in /doc folder
-
-    yarn build
-
 ## Update Github page
 
+    git checkout -b gh-pages
+    yarn build
     git commit -m "<conventional commit>: do something..."
     git push -u origin gh-pages
