@@ -4,7 +4,7 @@ import Map, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 // TODO -> .env
-const MAPBOX_TOKEN = 'pk.eyJ1IjoieHZ0aG9tYXMiLCJhIjoib28xSWthOCJ9.fFF9G9e14LSvOINrnEeWhQ' /*process.env.MAPBOX_TOKEN$*/
+const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN$
 
 export default function BasicMap() {
   return (

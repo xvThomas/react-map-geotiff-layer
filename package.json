@@ -5,6 +5,8 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --dist-dir ./docs --public-url .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\""
   },
@@ -18,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/xvThomas/react-map-geotiff-layer/issues"
   },
-  "homepage": "https://github.com/xvThomas/react-map-geotiff-layer#readme",
+  "homepage": "https://github.com/xvThomas/react-map-geotiff-layer",
   "devDependencies": {
     "@types/node": "^20.6.1",
     "@types/react": "^18.2.21",
@@ -31,6 +33,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "parcel": "^2.9.3",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",
