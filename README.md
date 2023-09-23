@@ -1,8 +1,8 @@
 # React-map-geotiff-layer demo page
 
-https://xvthomas.github.io/react-map-geotiff-layer/
+[Go to github page](https://xvthomas.github.io/react-map-geotiff-layer/)
 
-## Run demo app
+## Run demo app locally
 
     yarn start
 
