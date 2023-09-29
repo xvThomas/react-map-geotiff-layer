@@ -9,7 +9,8 @@
 ## Update Github page
 
     git checkout -b gh-pages
-    rmdir ./parcel-cache
+    rm -rf .parcel-cache
     yarn build
+    git add *
     git commit -m "feat: update gh-pages"
     git push -u origin gh-pages

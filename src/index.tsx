@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import Home from './Home'
-import BasicMap from './BasicMap'
+import BasicMapbox from './BasicMapbox'
+import BasicMaplibre from './BasicMaplibre'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -13,7 +14,8 @@ function Index() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path='basic' element={<BasicMap />} />
+          <Route path='basicM' element={<BasicMapbox />} />
+          <Route path='basic' element={<BasicMaplibre />} />
         </Routes>
         <Home></Home>
       </BrowserRouter>
