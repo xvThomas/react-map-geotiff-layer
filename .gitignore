@@ -4,3 +4,6 @@ node_modules
 dist
 yarn-error.log
 playground-build
+.parcel-cache
+.env
+.DS_Store
