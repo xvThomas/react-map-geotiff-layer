@@ -1,27 +1,26 @@
 import * as React from 'react'
-import Map, { Marker } from 'react-map-gl'
+import Map from 'react-map-gl'
+import InspectionBarControl from '../components/controls/InspectionBar'
+import { GeotiffLayer } from '../components/GeotiffLayer'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
-
-// TODO -> .env
-const MAPBOX_TOKEN = 'pk.eyJ1IjoieHZ0aG9tYXMiLCJhIjoib28xSWthOCJ9.fFF9G9e14LSvOINrnEeWhQ'
 
 export default function PlaygroundMap() {
   return (
     <div>
       <Map
         initialViewState={{
-          latitude: 37.8,
-          longitude: -122.4,
-          zoom: 14,
+          latitude: 0,
+          longitude: 0,
+          zoom: 3,
         }}
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/streets-v9'
-        mapboxAccessToken={MAPBOX_TOKEN}
+        mapboxAccessToken={process.env.MAPBOX_TOKEN}
       >
-        <Marker longitude={-122.4} latitude={37.8} color='red' />
+        <GeotiffLayer id='grid-layer-example' url='http://localhost:5625/test.tif' />
+        <InspectionBarControl />
       </Map>
-      pas cool
     </div>
   )
 }

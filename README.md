@@ -4,6 +4,8 @@ Work in progress
 
 ## Run example in dev mode
 
+### Get a mapbox token
+
 - First register to mapbox and get a token (if you don't have one)
 - Create a `.env` file with the following key:
 
@@ -11,10 +13,17 @@ Work in progress
 MAPBOX_TOKEN=<your-token>
 ```
 
-- then run the commands below:
+### Launch http-server
 
 ```bash
-$ npm install
-$ npm run build
-$ npm start
+cd public
+http-server -p 5625 --cors
+```
+
+### Build, compile and run
+
+```bash
+npm install
+npm run build
+npm start
 ```
