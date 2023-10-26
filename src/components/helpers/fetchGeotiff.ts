@@ -2,11 +2,11 @@ import { TaskEither, tryCatch } from 'fp-ts/lib/TaskEither'
 import parseGeoraster from 'georaster'
 
 export type LngLatVal = [number, number, number]
-export type Resolution = [number, number]
 
 export interface GeotiffData {
   values: number[][]
-  resolution: Resolution
+  cellWidth: number
+  cellHeight: number
   width: number
   height: number
   noDataValue: number | null
@@ -14,6 +14,8 @@ export interface GeotiffData {
   xmax: number
   ymin: number
   ymax: number
+  min: number
+  max: number
 }
 
 interface ParsedGeoRaster {
@@ -28,6 +30,8 @@ interface ParsedGeoRaster {
   xmax: number
   ymin: number
   ymax: number
+  mins: number[]
+  maxs: number[]
   values: number[][][]
 }
 
@@ -37,11 +41,7 @@ export const fetchGeotiff = (url: string, band: number = 0): TaskEither<Error, a
       fetch(url)
         .then((response) => response.arrayBuffer())
         .then(parseGeoraster)
-        .then((raster) => parsedGeoRasterToGeotiffData(raster as unknown as ParsedGeoRaster, band))
-        .then((geotiffData) => {
-          console.log(geotiffData)
-          return geotiffData
-        }),
+        .then((raster) => parsedGeoRasterToGeotiffData(raster as unknown as ParsedGeoRaster, band)),
     (e) => Error(`unable to fetch ${url} - ${e}`),
   )
 
@@ -52,11 +52,14 @@ const parsedGeoRasterToGeotiffData = (raster: ParsedGeoRaster, band: number): Ge
     values: raster.values[band],
     width: raster.width,
     height: raster.height,
-    resolution: [raster.pixelWidth, raster.pixelHeight],
+    cellWidth: raster.pixelWidth,
+    cellHeight: raster.pixelHeight,
     noDataValue: raster.noDataValue,
     xmin: raster.xmin,
     xmax: raster.xmax,
     ymin: raster.ymin,
     ymax: raster.ymax,
+    min: raster.mins[band],
+    max: raster.maxs[band],
   } as GeotiffData
 }

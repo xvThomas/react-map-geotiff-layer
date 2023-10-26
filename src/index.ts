@@ -1,3 +1,3 @@
-import Counter from './components/Counter'
+import { GeotiffLayer } from './components/GeotiffLayer'
 
-export { Counter }
+export { GeotiffLayer }

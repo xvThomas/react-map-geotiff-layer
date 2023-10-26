@@ -6,7 +6,7 @@ Work in progress
 
 ### Get a mapbox token
 
-- First register to mapbox and get a token (if you don't have one)
+- First register to [mapbox](https://account.mapbox.com/auth/signup/) and get a token (if you don't have one)
 - Create a `.env` file with the following key:
 
 ```bash
