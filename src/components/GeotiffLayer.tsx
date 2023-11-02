@@ -28,7 +28,6 @@ const GeotiffLayer: React.FC<GeotiffLayerProps> = (props) => {
 
   const removeLayer = React.useCallback(() => {
     if (gridGLLayer !== null && map !== undefined) {
-      // console.log('remove layer')
       map.getMap().removeLayer(props.id)
     }
   }, [gridGLLayer, map, props.id])
@@ -41,23 +40,20 @@ const GeotiffLayer: React.FC<GeotiffLayerProps> = (props) => {
 
   React.useEffect(() => {
     if (props.url === undefined) return
-    if (map === undefined) {
-      throw Error('GeotiffLayer must be used inside a Map component')
-    } else {
-      map.once('load', function () {
-        pipe(
-          fetchGeotiff(props.url, 0),
-          match<Error, void, GeotiffData>(
-            (left) => {
-              if (props.onError) props.onError(left)
-            },
-            (geotiffData) => {
-              setGeotiffData(geotiffData)
-            },
-          ),
-        )()
-      })
-    }
+    if (map === undefined) throw Error('GeotiffLayer must be used inside a Map component')
+    map.once('load', function () {
+      pipe(
+        fetchGeotiff(props.url, 0),
+        match<Error, void, GeotiffData>(
+          (left) => {
+            if (props.onError) props.onError(left)
+          },
+          (geotiffData) => {
+            setGeotiffData(geotiffData)
+          },
+        ),
+      )()
+    })
   }, [map, props, props.url])
 
   React.useEffect(() => {
@@ -83,23 +79,9 @@ const GeotiffLayer: React.FC<GeotiffLayerProps> = (props) => {
     map.getMap().addLayer(gridLayer)
     setGridGLLayer(gridLayer)
     if (props.loaded) props.loaded(geotiffData)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [geotiffData])
+  }, [geotiffData, gridGLLayer, map, props])
 
   return null
 }
 
 export default GeotiffLayer
-
-/*
-GeotiffLayer.defaultProps = {
-  interpolated: true,
-  interpolateBounds: false,
-  opacity: 1,
-  visible: true,
-  wireframe: false,
-  colors: ['#FFFFFF', '#000000'],
-  domain: undefined,
-  loaded: undefined,
-}
-*/
