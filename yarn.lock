@@ -1653,9 +1653,9 @@
   "version" "4.0.1"
 
 "@types/prop-types@*":
-  "integrity" "sha512-FbtmBWCcSa2J4zL781Zf1p5YUBXQomPEcep9QZCfRfQgTxz3pJWiDFLebohZ9fFntX5ibzOkSsrJ0TEew8cAog=="
-  "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.7.tgz"
-  "version" "15.7.7"
+  "integrity" "sha512-n1yyPsugYNSmHgxDFjicaI2+gCNjsBck8UX9kuofAKlc0h1bL+20oSF72KeNaW2DUlesbEVCFgyV2dPGTiY42g=="
+  "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.9.tgz"
+  "version" "15.7.9"
 
 "@types/q@^1.5.1":
   "integrity" "sha512-IKjZ8RjTSwD4/YG+2gtj7BPFRB/lNbWKTiSj3M7U/TD2B7HfYCxvp2Zz6xA2WIY7pAuL1QOUPw8gQRbUrrq4fQ=="

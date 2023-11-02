@@ -1,3 +1,3 @@
-import { GeotiffLayer } from './components/GeotiffLayer'
+import GeotiffLayer from './components/GeotiffLayer'
 
 export { GeotiffLayer }

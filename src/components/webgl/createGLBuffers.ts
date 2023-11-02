@@ -108,7 +108,7 @@ class GridGLBuffers {
 
   /** check if a value is a no data value */
   isNoData(value: number | null) {
-    return value === this.noDataValue
+    return value === this.noDataValue || value === 0
   }
 
   /** return the color of a grid value */

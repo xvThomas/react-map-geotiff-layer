@@ -1,55 +1,43 @@
-import { Color } from 'chroma-js'
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import { CustomLayerInterface, useMap } from 'react-map-gl'
 import { GeotiffData, fetchGeotiff } from './helpers/fetchGeotiff'
 import { match } from 'fp-ts/lib/TaskEither'
 import { pipe } from 'fp-ts/lib/function'
 import GridGLLayer from './webgl/gridGLLayer'
+import { Color } from 'chroma-js'
 
-export interface GeotiffLayerProps {
+type GeotiffLayerProps = {
   id: string
-  interpolated: boolean
-  interpolateBounds: boolean
-  visible: boolean
-  opacity: number
-  colors: (string | Color)[]
-  domain: number[] | undefined
   url: string
-  wireframe: boolean
-  loaded: (geotiffData: GeotiffData) => void
+  interpolated?: boolean
+  interpolateBounds?: boolean
+  opacity?: number
+  visible?: boolean
+  wireframe?: boolean
+  colors?: (string | Color)[]
+  domain?: number[]
+  loaded?: (geotiff: GeotiffData) => any
+  onError?: (e: Error) => any
 }
 
-export const GeotiffLayer = (props: GeotiffLayerProps) => {
+const GeotiffLayer: React.FC<GeotiffLayerProps> = (props) => {
   const [gridGLLayer, setGridGLLayer] = React.useState<CustomLayerInterface | null>(null)
   const [geotiffData, setGeotiffData] = React.useState<GeotiffData | undefined>(undefined)
 
   const { current: map } = useMap()
 
-  /*
   const removeLayer = React.useCallback(() => {
     if (gridGLLayer !== null && map !== undefined) {
       // console.log('remove layer')
-      // map.getMap().removeLayer(gridGLLayer.id)
+      map.getMap().removeLayer(props.id)
     }
-  }, [gridGLLayer, map])
+  }, [gridGLLayer, map, props.id])
 
   React.useEffect(() => {
     return () => {
-      
-      // if (gridGLLayer !== null && map !== undefined) {
-      //   console.log('remove layer')
-      //   map.getMap().removeLayer(gridGLLayer.id)
-      // }
-     
       removeLayer()
     }
-  })
-  */
-
-  React.useEffect(() => {
-    console.log('empty')
-  }, [])
+  }, [removeLayer])
 
   React.useEffect(() => {
     if (props.url === undefined) return
@@ -60,7 +48,9 @@ export const GeotiffLayer = (props: GeotiffLayerProps) => {
         pipe(
           fetchGeotiff(props.url, 0),
           match<Error, void, GeotiffData>(
-            (left) => console.log(left),
+            (left) => {
+              if (props.onError) props.onError(left)
+            },
             (geotiffData) => {
               setGeotiffData(geotiffData)
             },
@@ -68,8 +58,7 @@ export const GeotiffLayer = (props: GeotiffLayerProps) => {
         )()
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.url])
+  }, [map, props, props.url])
 
   React.useEffect(() => {
     if (map === undefined) return
@@ -81,30 +70,28 @@ export const GeotiffLayer = (props: GeotiffLayerProps) => {
 
     const gridLayer = new GridGLLayer({
       id: props.id,
-      visible: props.visible,
-      colors: props.colors,
-      domain: props.domain ? props.domain : [geotiffData.min, geotiffData.max],
-      opacity: props.opacity,
-      interpolated: props.interpolated,
-      interpolateBounds: props.interpolateBounds,
       geotiffData: geotiffData,
-      wireframe: props.wireframe,
+      colors: props.colors ?? ['#FFFFFF', '#000000'],
+      domain: props.domain ?? [geotiffData.min, geotiffData.max],
+      visible: props.visible === undefined ? true : props.visible,
+      opacity: props.opacity === undefined ? 1 : props.opacity,
+      interpolated: props.interpolated == undefined ? true : props.interpolated,
+      interpolateBounds: props.interpolateBounds == undefined ? false : props.interpolateBounds,
+      wireframe: props.wireframe == undefined ? false : props.wireframe,
     })
 
     map.getMap().addLayer(gridLayer)
     setGridGLLayer(gridLayer)
-    if (props.loaded !== undefined) props.loaded(geotiffData)
+    if (props.loaded) props.loaded(geotiffData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geotiffData])
 
   return null
 }
 
-GeotiffLayer.propTypes = {
-  id: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-}
+export default GeotiffLayer
 
+/*
 GeotiffLayer.defaultProps = {
   interpolated: true,
   interpolateBounds: false,
@@ -115,3 +102,4 @@ GeotiffLayer.defaultProps = {
   domain: undefined,
   loaded: undefined,
 }
+*/
