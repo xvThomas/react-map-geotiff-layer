@@ -35,7 +35,7 @@ interface ParsedGeoRaster {
   values: number[][][]
 }
 
-export const fetchGeotiff = (url: string, band: number = 0): TaskEither<Error, any> =>
+export const fetchGeotiff = (url: string, band: number = 0): TaskEither<Error, GeotiffData> =>
   tryCatch(
     () =>
       fetch(url)

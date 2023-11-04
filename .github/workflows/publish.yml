@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           # Node version. Run "node -v" to check the latest version
-          node-version: 16.3
+          node-version: 18.16
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies

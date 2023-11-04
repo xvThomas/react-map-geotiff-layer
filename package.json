@@ -40,6 +40,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
+    "@babel/preset-typescript": "^7.23.2",
     "@testing-library/react": "^14.0.0",
     "@types/chroma-js": "^2.4.1",
     "@types/jest": "^29.5.5",
@@ -62,6 +63,7 @@
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "testcontainers": "^10.2.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
   },
