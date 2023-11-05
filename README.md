@@ -1,8 +1,6 @@
 
 # react-map-geotiff-layer (Work in progress, not ready for production)
 
-<img src="https://img.shields.io/badge/node-18.16.0-blue" />
-
 ![node](https://img.shields.io/badge/node-18.16.0-blue)
 
 Here is an example with mapbox-gl behind react-map-gl:
@@ -38,7 +36,7 @@ Here is an example with mapbox-gl behind react-map-gl:
 npm i react-map-geotiff-layer
 ```
 
-### Properties
+### `<GeotiffLayer/>` Properties
 
 | prop              | type                | required | default value                  | description                                                                                                                                                                                                                                          |
 | ----------------- | ------------------- | :------: | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,7 +53,7 @@ npm i react-map-geotiff-layer
 | minzoom           | number              |    no    | undefined                      | The minimum zoom level for the layer (between 0 and 24 inclusive). At zoom levels less than the minzoom, the layer will be hidden (not yed implemented)                                                                                              |
 | noDataValue       | number \| null      |    no    | undefined                      | Override noDataValue originally stored in the geotiff                                                                                                                                                                                                |
 
-### Events
+### `<GeotiffLayer/>` Events
 
 | event   | signature                     | description                                                                   |
 | ------- | ----------------------------- | ----------------------------------------------------------------------------- |
@@ -85,9 +83,10 @@ export interface GeotiffData {
 
 ## Roadmap
 
+- github-pages demo
 - S3 download
 - Cloud Optimized Geotiff
-- multi urls (introduce array of urls and indexation of selected geotiff)
+- Multi urls (introduce array of urls and indexation of selected geotiff)
 - Resolve jitter effect at low resolution
 - Ensure support of maplibre
 
